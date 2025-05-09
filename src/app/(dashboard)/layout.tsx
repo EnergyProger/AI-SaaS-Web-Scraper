@@ -1,3 +1,6 @@
+import BreadcrumbHeader from "@/components/breadcrumb-header";
+import Sidebar from "@/components/sidebar";
+import ThemeModeToggle from "@/components/theme-mode-toggle";
 import { Separator } from "@/components/ui/separator";
 import React from "react";
 
@@ -8,9 +11,13 @@ type Props = {
 const Layout = ({ children }: Props) => {
   return (
     <div className="flex h-screen">
+      <Sidebar />
       <div className="flex flex-col flex-1 min-h-screen">
         <header className="flex items-center justify-between px-6 py-4 h-[50px] container">
-          AIWebScrapeFlow
+          <BreadcrumbHeader />
+          <div className="gap-1 flex items-center">
+            <ThemeModeToggle />
+          </div>
         </header>
         <Separator />
         <div className="overflow-auto">
