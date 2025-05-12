@@ -6,13 +6,11 @@ import { Button, buttonVariants } from "../ui/button";
 import { MenuIcon } from "lucide-react";
 import Logo from "../logo";
 import Link from "next/link";
+import { getActiveRoute } from "@/lib/helper/get-active-route";
 
 const MobileSidebar = () => {
   const pathname = usePathname();
-  const activeRoute =
-    SIDEBAR_ROUTES.find(
-      (route) => route.href.length > 0 && pathname.includes(route.href)
-    ) || SIDEBAR_ROUTES[0];
+  const activeRoute = getActiveRoute(pathname, SIDEBAR_ROUTES);
 
   const [isOpen, setOpen] = useState<boolean>(false);
 

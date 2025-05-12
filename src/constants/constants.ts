@@ -1,3 +1,4 @@
+import { WorkflowStatus } from "@/types/workflow";
 import {
   CoinsIcon,
   HomeIcon,
@@ -10,7 +11,7 @@ export const LOGO_ICON_SIZE = 20;
 export const DEFAULT_ICON_SIZE = 20;
 export const SIDEBAR_ROUTES = [
   {
-    href: "",
+    href: "/",
     label: "Home",
     icon: HomeIcon,
   },
@@ -30,3 +31,13 @@ export const SIDEBAR_ROUTES = [
     icon: CoinsIcon,
   },
 ];
+export const DEFAULT_WORKFLOW_SKELETON = [1, 2, 3, 4];
+export const EMPTY_WORKFLOWS_ICON_SIZE = 40;
+export const DIALOG_HEADER_ICON_SIZE = 30;
+export const WORKFLOW_STATUS_COLORS = {
+  [WorkflowStatus.DRAFT]: "bg-yellow-400 text-yellow-600",
+  [WorkflowStatus.PUBLISHED]: "bg-primary",
+};
+export const WORKFLOW_CARD_EDIT_ICON_SIZE = 16;
+export const WORKFLOW_CARD_ACTIONS_ICON_SIZE = 18;
+export const TOOLTIP_PROVIDER_DELAY_DURATION = 0;

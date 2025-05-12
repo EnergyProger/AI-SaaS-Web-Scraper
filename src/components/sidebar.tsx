@@ -6,13 +6,11 @@ import Link from "next/link";
 import { DEFAULT_ICON_SIZE, SIDEBAR_ROUTES } from "@/constants/constants";
 import { buttonVariants } from "./ui/button";
 import { usePathname } from "next/navigation";
+import { getActiveRoute } from "@/lib/helper/get-active-route";
 
 const Sidebar = () => {
   const pathname = usePathname();
-  const activeRoute =
-    SIDEBAR_ROUTES.find(
-      (route) => route.href.length > 0 && pathname.includes(route.href)
-    ) || SIDEBAR_ROUTES[0];
+  const activeRoute = getActiveRoute(pathname, SIDEBAR_ROUTES);
 
   return (
     <div
