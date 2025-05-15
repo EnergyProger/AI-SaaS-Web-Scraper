@@ -19,7 +19,7 @@ const Topbar = ({ title, subtitle, workflowId }: Props) => {
 
   return (
     <header
-      className="flex p-2 border-p-2 border-separate justify-between w-full h-[60px]
+      className="flex p-2 border-b-2 border-separate justify-between w-full h-[60px]
     sticky top-0 bg-background z-10"
     >
       <div className="flex flex-1 gap-1">

@@ -1,3 +1,4 @@
+import { TaskParamType } from "@/types/task";
 import { WorkflowStatus } from "@/types/workflow";
 import {
   CoinsIcon,
@@ -9,6 +10,7 @@ import {
 export const LOGO_FONT_SIZE = "2xl";
 export const LOGO_ICON_SIZE = 20;
 export const DEFAULT_ICON_SIZE = 20;
+
 export const SIDEBAR_ROUTES = [
   {
     href: "/",
@@ -31,6 +33,7 @@ export const SIDEBAR_ROUTES = [
     icon: CoinsIcon,
   },
 ];
+
 export const DEFAULT_WORKFLOW_SKELETON = [1, 2, 3, 4];
 export const EMPTY_WORKFLOWS_ICON_SIZE = 40;
 export const DIALOG_HEADER_ICON_SIZE = 30;
@@ -41,9 +44,14 @@ export const WORKFLOW_STATUS_COLORS = {
 export const WORKFLOW_CARD_EDIT_ICON_SIZE = 16;
 export const WORKFLOW_CARD_ACTIONS_ICON_SIZE = 18;
 export const TOOLTIP_PROVIDER_DELAY_DURATION = 0;
+
 export const EDITOR_BACKGROUND_VARIANT_GAP = 12;
 export const EDITOR_BACKGROUND_VARIANT_SIZE = 1;
 export const EDITOR_LOADING_ICON_SIZE = 30;
 export const TASK_ICON_SIZE = 16;
 export const DEFAULT_NODE_ICON_SIZE = 16;
 export const TOPBAR_ICON_SIZE = 16;
+export const COLOR_FOR_NODE_HANDLE: Record<TaskParamType, string> = {
+  BROWSER_INSTANCE: "!bg-sky-400",
+  STRING: "!bg-amber-400",
+};

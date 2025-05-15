@@ -3,7 +3,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { DEFAULT_NODE_ICON_SIZE, TASK_ICON_SIZE } from "@/constants/constants";
-import { RegistryTask } from "@/lib/workflow/task/registry";
+import { TaskRegistry } from "@/lib/workflow/task/registry";
 import { TaskType } from "@/types/task";
 import { Coins, GripVertical } from "lucide-react";
 
@@ -12,7 +12,7 @@ type Props = {
 };
 
 const NodeHeader = ({ taskType }: Props) => {
-  const task = RegistryTask[taskType];
+  const task = TaskRegistry[taskType];
 
   return (
     <div className="flex items-center gap-2 p-2">
