@@ -2,24 +2,40 @@
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { TaskParam } from "@/types/task";
-import React, { useId, useState } from "react";
+import React, { useEffect, useId, useState } from "react";
 
 type Props = {
   param: TaskParam;
   value: string;
   updateNodeParamValue: (value: string) => void;
+  disabled: boolean;
 };
 
-const StringParam = ({ param, value, updateNodeParamValue }: Props) => {
+const StringParam = ({
+  param,
+  value,
+  updateNodeParamValue,
+  disabled,
+}: Props) => {
   const id = useId();
 
   const [internalValue, setInternalValue] = useState<string>(value);
 
-  const onChangeInputValue = (event: React.ChangeEvent<HTMLInputElement>) =>
+  useEffect(() => {
+    setInternalValue(value);
+  }, [value]);
+
+  let ComponentElement: any = Input;
+  if (param.variant === "textarea") {
+    ComponentElement = Textarea;
+  }
+
+  const onChangeInputValue = (event: any) =>
     setInternalValue(event.target.value);
 
-  const onBlurInputValue = (event: React.FocusEvent<HTMLInputElement>) =>
+  const onBlurInputValue = (event: any) =>
     updateNodeParamValue(event.target.value);
 
   return (
@@ -28,9 +44,10 @@ const StringParam = ({ param, value, updateNodeParamValue }: Props) => {
         {param.name}
         {param.required && <p className="text-red-400 px-2">*</p>}
       </Label>
-      <Input
+      <ComponentElement
         className="text-xs"
         id={id}
+        disabled={disabled}
         value={internalValue}
         placeholder="Enter value here..."
         onChange={onChangeInputValue}

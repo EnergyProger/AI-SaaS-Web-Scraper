@@ -5,12 +5,10 @@ import React from "react";
 
 type Props = {
   param: TaskParam;
-  value: string;
-  updateNodeParamValue: (value: string) => void;
 };
 
-function BrowserInstanceParam({ param, value, updateNodeParamValue }: Props) {
+const BrowserInstanceParam = ({ param }: Props) => {
   return <p className="text-xs">{param.name}</p>;
-}
+};
 
 export default BrowserInstanceParam;
