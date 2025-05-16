@@ -55,3 +55,4 @@ export const COLOR_FOR_NODE_HANDLE: Record<TaskParamType, string> = {
   BROWSER_INSTANCE: "!bg-sky-400",
   STRING: "!bg-amber-400",
 };
+export const COPY_NODE_POSITION_X = 20;
