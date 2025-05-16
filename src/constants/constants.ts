@@ -56,3 +56,5 @@ export const COLOR_FOR_NODE_HANDLE: Record<TaskParamType, string> = {
   STRING: "!bg-amber-400",
 };
 export const COPY_NODE_POSITION_X = 20;
+export const LAUNCH_BROWSER_TASK_CREDIT = 5;
+export const DEFAULT_TASK_CREDIT = 2;

@@ -1,4 +1,6 @@
+import { DEFAULT_TASK_CREDIT } from "@/constants/constants";
 import { TaskParamType, TaskType } from "@/types/task";
+import { WorkflowTask } from "@/types/workflow";
 import { Code, LucideProps } from "lucide-react";
 
 export const PageToHTMLTask = {
@@ -6,6 +8,7 @@ export const PageToHTMLTask = {
   label: "Get HTML from page",
   icon: (props: LucideProps) => <Code className="stroke-rose-400" {...props} />,
   isEntryPoint: false,
+  credits: DEFAULT_TASK_CREDIT,
   inputs: [
     {
       name: "Web page",
@@ -23,4 +26,4 @@ export const PageToHTMLTask = {
       type: TaskParamType.BROWSER_INSTANCE,
     },
   ],
-};
+} satisfies WorkflowTask;
