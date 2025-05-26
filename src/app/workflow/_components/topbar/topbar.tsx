@@ -7,14 +7,21 @@ import { ChevronLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React from "react";
 import SaveButton from "./save-button";
+import ExecuteButton from "./execute-button";
 
 type Props = {
   title: string;
   subtitle?: string;
   workflowId: string;
+  hideButtons?: boolean;
 };
 
-const Topbar = ({ title, subtitle, workflowId }: Props) => {
+const Topbar = ({
+  title,
+  subtitle,
+  workflowId,
+  hideButtons = false,
+}: Props) => {
   const router = useRouter();
 
   return (
@@ -38,7 +45,12 @@ const Topbar = ({ title, subtitle, workflowId }: Props) => {
         </div>
       </div>
       <div className="flex flex-1 gap-1 justify-end">
-        <SaveButton workflowId={workflowId} />
+        {!hideButtons && (
+          <>
+            <ExecuteButton workflowId={workflowId} />
+            <SaveButton workflowId={workflowId} />
+          </>
+        )}
       </div>
     </header>
   );

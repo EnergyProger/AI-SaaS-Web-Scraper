@@ -15,3 +15,8 @@ export interface AppNodePosition {
   x: number;
   y: number;
 }
+
+export type AppNodeMissingInputs = {
+  nodeId: string;
+  inputs: string[];
+};

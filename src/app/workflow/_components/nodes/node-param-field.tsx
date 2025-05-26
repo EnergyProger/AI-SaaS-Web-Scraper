@@ -4,7 +4,7 @@ import { TaskParam, TaskParamType } from "@/types/task";
 import React, { useCallback } from "react";
 import StringParam from "./params/string-param";
 import { useReactFlow } from "@xyflow/react";
-import { AppNode } from "@/types/appNode";
+import { AppNode } from "@/types/app-node";
 import BrowserInstanceParam from "./params/browser-instance-param";
 
 type Props = {

@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { errorHandler } from "@/lib/helper/error-handler";
 import {
   createWorkflowSchema,
   createWorkflowSchemaType,
@@ -32,8 +33,10 @@ const CreateWorkflowDialogForm = () => {
     mutationFn: createWorkflow,
     onSuccess: () =>
       toast.success("Workflow created", { id: "create-workflow" }),
-    onError: () =>
-      toast.error("Failed to create a workflow", { id: "create-workflow" }),
+    onError: (error: unknown) => {
+      const message = errorHandler(error);
+      toast.error(message, { id: "create-workflow" });
+    },
   });
 
   const onSubmit = useCallback(

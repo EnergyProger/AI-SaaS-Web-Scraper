@@ -22,7 +22,7 @@ import {
 } from "@xyflow/react";
 import { createFlowNode } from "@/lib/workflow/create-flow-node";
 import { TaskType } from "@/types/task";
-import { AppNode } from "@/types/appNode";
+import { AppNode } from "@/types/app-node";
 import DeletableEdge from "./edges/deletable-edge";
 
 import "@xyflow/react/dist/style.css";

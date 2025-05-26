@@ -9,7 +9,7 @@ import {
 } from "@/constants/constants";
 import { createFlowNode } from "@/lib/workflow/create-flow-node";
 import { TaskRegistry } from "@/lib/workflow/task/registry";
-import { AppNode } from "@/types/appNode";
+import { AppNode } from "@/types/app-node";
 import { TaskType } from "@/types/task";
 import { useReactFlow } from "@xyflow/react";
 import { Coins, Copy, GripVertical, Trash } from "lucide-react";

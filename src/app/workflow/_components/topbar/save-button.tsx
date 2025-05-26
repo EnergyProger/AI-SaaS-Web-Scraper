@@ -3,6 +3,7 @@
 import { updateWorkflow } from "@/actions/workflows";
 import { Button } from "@/components/ui/button";
 import { TOPBAR_ICON_SIZE } from "@/constants/constants";
+import { errorHandler } from "@/lib/helper/error-handler";
 import { useMutation } from "@tanstack/react-query";
 import { useReactFlow } from "@xyflow/react";
 import { Check } from "lucide-react";
@@ -26,7 +27,10 @@ const SaveButton = ({ workflowId }: Props) => {
       updateWorkflow(id, definition),
     onSuccess: () =>
       toast.success("Flow saved successfully", { id: "save-workflow" }),
-    onError: () => toast.error("Something went wrong", { id: "save-workflow" }),
+    onError: (error: unknown) => {
+      const message = errorHandler(error);
+      toast.error(message, { id: "save-workflow" });
+    },
   });
 
   const onUpdateWorkflow = () => {

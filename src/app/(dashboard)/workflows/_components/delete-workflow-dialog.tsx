@@ -12,6 +12,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { Input } from "@/components/ui/input";
+import { errorHandler } from "@/lib/helper/error-handler";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -39,8 +40,10 @@ const DeleteWorkflowDialog = ({
       toast.success("Workflow deleted successfully", { id: workflowId });
       setConfirmText("");
     },
-    onError: () =>
-      toast.error("Failed to delete the workflow", { id: workflowId }),
+    onError: (error: unknown) => {
+      const message = errorHandler(error);
+      toast.error(message, { id: workflowId });
+    },
   });
 
   const onDeleteWorkflow = () => {
