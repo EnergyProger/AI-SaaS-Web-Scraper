@@ -58,3 +58,6 @@ export const COLOR_FOR_NODE_HANDLE: Record<TaskParamType, string> = {
 export const COPY_NODE_POSITION_X = 20;
 export const LAUNCH_BROWSER_TASK_CREDIT = 5;
 export const DEFAULT_TASK_CREDIT = 2;
+
+export const LOG_TIMESTAMP_TABLE_CELL_WIDTH = 190;
+export const LOG_LEVEL_TABLE_CELL_WIDTH = 80;

@@ -2,6 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { createFlowNode } from "@/lib/workflow/create-flow-node";
+import { executeWorkflow } from "@/lib/workflow/execute-workflow";
 import { flowToExecutionPlan } from "@/lib/workflow/execution-plan";
 import { TaskRegistry } from "@/lib/workflow/task/registry";
 import {
@@ -257,6 +258,7 @@ export const runWorkflow = async (form: {
         workflowId,
         userId,
         trigger: WorkflowExecutionTrigger.MANUAL,
+        definition: flowDefinition,
         status: WorkflowExecutionStatus.PENDING,
         startedAt: new Date(),
         phases: {
@@ -282,6 +284,8 @@ export const runWorkflow = async (form: {
     if (!execution) {
       throw new Error("Failed to create workflow execution");
     }
+
+    executeWorkflow(execution.id);
 
     workflowIdentifier = workflowId;
     executionId = execution.id;
@@ -324,6 +328,42 @@ export const getWorkflowExecutionWithPhases = async (executionId: string) => {
   } catch (error) {
     if (error instanceof Error) {
       console.log("Failed to get workflow execution phases:", error.message);
+      throw error;
+    } else {
+      console.log(error);
+      throw new Error("Something went wrong");
+    }
+  }
+};
+
+export const getWorkflowPhaseDetails = async (phaseId: string) => {
+  try {
+    const { userId } = auth();
+
+    if (!userId) {
+      throw new Error("Unauthenticated");
+    }
+
+    const phase = await prisma.executionPhase.findUnique({
+      where: {
+        id: phaseId,
+        execution: {
+          userId,
+        },
+      },
+      include: {
+        logs: {
+          orderBy: {
+            timestamp: "asc",
+          },
+        },
+      },
+    });
+
+    return phase;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.log("Failed to get workflow phase details:", error.message);
       throw error;
     } else {
       console.log(error);
