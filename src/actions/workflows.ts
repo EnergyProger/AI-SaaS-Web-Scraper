@@ -371,3 +371,33 @@ export const getWorkflowPhaseDetails = async (phaseId: string) => {
     }
   }
 };
+
+export const getWorkflowExecutions = async (workflowId: string) => {
+  try {
+    const { userId } = auth();
+
+    if (!userId) {
+      throw new Error("Unauthenticated");
+    }
+
+    const executions = await prisma.workflowExecution.findMany({
+      where: {
+        workflowId,
+        userId,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    return executions;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.log("Failed to get workflow executions:", error.message);
+      throw error;
+    } else {
+      console.log(error);
+      throw new Error("Something went wrong");
+    }
+  }
+};
