@@ -4,7 +4,10 @@ import {
   getWorkflowExecutionWithPhases,
   getWorkflowPhaseDetails,
 } from "@/actions/workflows";
-import { DEFAULT_ICON_SIZE } from "@/constants/constants";
+import {
+  DEFAULT_ICON_SIZE,
+  EXECUTION_REFETCH_INTERVAL,
+} from "@/constants/constants";
 import {
   ExecutionPhaseStatus,
   WorkflowExecutionStatus,
@@ -29,6 +32,7 @@ import { getPhasesTotalCost } from "@/lib/helper/phases";
 import ParameterViewer from "./parameter-viewer";
 import LogViewer from "./log-viewer";
 import PhaseStatusBadge from "./phase-status-badge";
+import ReactCountUpWrapper from "@/components/react-count-up-wrapper";
 
 type ExecutionData = Awaited<ReturnType<typeof getWorkflowExecutionWithPhases>>;
 
@@ -43,7 +47,7 @@ const ExecutionViewer = ({ initialData }: Props) => {
     queryFn: () => getWorkflowExecutionWithPhases(initialData!.id),
     refetchInterval: (query) =>
       query.state.data?.status === WorkflowExecutionStatus.RUNNING
-        ? 1000
+        ? EXECUTION_REFETCH_INTERVAL
         : false,
   });
 
@@ -127,7 +131,7 @@ const ExecutionViewer = ({ initialData }: Props) => {
           <ExecutionLabel
             icon={Coins}
             label="Credits consumed"
-            value={creditsConsumed}
+            value={<ReactCountUpWrapper value={creditsConsumed} />}
           />
         </div>
         <Separator />
@@ -185,7 +189,7 @@ const ExecutionViewer = ({ initialData }: Props) => {
                   />
                   <span>Credits</span>
                 </div>
-                <span>TODO</span>
+                <span>{phaseDetails.data.creditsConsumed}</span>
               </Badge>
               <Badge variant="outline" className="space-x-4">
                 <div className="flex gap-1 items-center">

@@ -7,6 +7,7 @@ import { MenuIcon } from "lucide-react";
 import Logo from "../logo";
 import Link from "next/link";
 import { getActiveRoute } from "@/lib/helper/get-active-route";
+import UserAvailableCreditsBadge from "../user-available-credits-badge";
 
 const MobileSidebar = () => {
   const pathname = usePathname();
@@ -28,6 +29,7 @@ const MobileSidebar = () => {
             side="left"
           >
             <Logo />
+            <UserAvailableCreditsBadge />
             <div className="flex flex-col gap-1">
               {SIDEBAR_ROUTES.map((route) => (
                 <Link
