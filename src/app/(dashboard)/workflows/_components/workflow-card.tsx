@@ -13,6 +13,7 @@ import { FileText, Play, Shuffle } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import WorkflowActions from "./workflow-actions";
+import RunButton from "./run-button";
 
 type Props = {
   workflow: Workflow;
@@ -60,6 +61,7 @@ const WorkflowCard = ({ workflow }: Props) => {
           </div>
         </div>
         <div className="flex items-center space-x-2">
+          {!isDraft && <RunButton workflowId={workflow.id} />}
           <Link
             href={`/workflow/editor/${workflow.id}`}
             className={cn(

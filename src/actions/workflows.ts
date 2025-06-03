@@ -1,6 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
+import { calculateWorkflowCost } from "@/lib/workflow/calculate-workflow-cost";
 import { createFlowNode } from "@/lib/workflow/create-flow-node";
 import { executeWorkflow } from "@/lib/workflow/execute-workflow";
 import { flowToExecutionPlan } from "@/lib/workflow/execution-plan";
@@ -235,30 +236,40 @@ export const runWorkflow = async (form: {
     }
 
     let executionPlan: WorkflowExecutionPlan;
+    let workflowDefinition = flowDefinition;
 
-    if (!flowDefinition) {
-      throw new Error("Flow definition isn't defined");
+    if (workflow.status === WorkflowStatus.PUBLISHED) {
+      if (!workflow.executionPlan) {
+        throw new Error("No execution plan found in published workflow");
+      }
+
+      executionPlan = JSON.parse(workflow.executionPlan);
+      workflowDefinition = workflow.definition;
+    } else {
+      if (!flowDefinition) {
+        throw new Error("Flow definition isn't defined");
+      }
+
+      const flow = JSON.parse(flowDefinition);
+      const result = flowToExecutionPlan(flow.nodes, flow.edges);
+
+      if (result.error) {
+        throw new Error("Flow definition not valid");
+      }
+
+      if (!result.executionPlan) {
+        throw new Error("No execution plan generated");
+      }
+
+      executionPlan = result.executionPlan;
     }
-
-    const flow = JSON.parse(flowDefinition);
-    const result = flowToExecutionPlan(flow.nodes, flow.edges);
-
-    if (result.error) {
-      throw new Error("Flow definition not valid");
-    }
-
-    if (!result.executionPlan) {
-      throw new Error("No execution plan generated");
-    }
-
-    executionPlan = result.executionPlan;
 
     const execution = await prisma.workflowExecution.create({
       data: {
         workflowId,
         userId,
         trigger: WorkflowExecutionTrigger.MANUAL,
-        definition: flowDefinition,
+        definition: workflowDefinition,
         status: WorkflowExecutionStatus.PENDING,
         startedAt: new Date(),
         phases: {
@@ -394,6 +405,120 @@ export const getWorkflowExecutions = async (workflowId: string) => {
   } catch (error) {
     if (error instanceof Error) {
       console.log("Failed to get workflow executions:", error.message);
+      throw error;
+    } else {
+      console.log(error);
+      throw new Error("Something went wrong");
+    }
+  }
+};
+
+export const publishWorkflow = async ({
+  id,
+  flowDefinition,
+}: {
+  id: string;
+  flowDefinition: string;
+}) => {
+  try {
+    const { userId } = auth();
+
+    if (!userId) {
+      throw new Error("Unauthenticated");
+    }
+
+    const workflow = await prisma.workflow.findUnique({
+      where: {
+        id,
+        userId,
+      },
+    });
+
+    if (!workflow) {
+      throw new Error("Workflow not found");
+    }
+
+    if (workflow.status !== WorkflowStatus.DRAFT) {
+      throw new Error("Workflow isn't a draft");
+    }
+
+    const flow = JSON.parse(flowDefinition);
+    const result = flowToExecutionPlan(flow.nodes, flow.edges);
+
+    if (result.error) {
+      throw new Error("Flow definition not valid");
+    }
+
+    if (!result.executionPlan) {
+      throw new Error("No execution plan generated");
+    }
+
+    const creditsCost = calculateWorkflowCost(flow.nodes);
+
+    await prisma.workflow.update({
+      where: {
+        id,
+        userId,
+      },
+      data: {
+        definition: flowDefinition,
+        executionPlan: JSON.stringify(result.executionPlan),
+        creditsCost,
+        status: WorkflowStatus.PUBLISHED,
+      },
+    });
+
+    revalidatePath(`/workflow/editor/${id}`);
+  } catch (error) {
+    if (error instanceof Error) {
+      console.log("Failed to publish workflow:", error.message);
+      throw error;
+    } else {
+      console.log(error);
+      throw new Error("Something went wrong");
+    }
+  }
+};
+
+export const unpublishWorkflow = async (id: string) => {
+  try {
+    const { userId } = auth();
+
+    if (!userId) {
+      throw new Error("Unauthenticated");
+    }
+
+    const workflow = await prisma.workflow.findUnique({
+      where: {
+        id,
+        userId,
+      },
+    });
+
+    if (!workflow) {
+      throw new Error("Workflow not found");
+    }
+
+    if (workflow.status !== WorkflowStatus.PUBLISHED) {
+      throw new Error("Workflow isn't published");
+    }
+
+    await prisma.workflow.update({
+      where: {
+        id,
+        userId,
+      },
+      data: {
+        status: WorkflowStatus.DRAFT,
+        executionPlan: null,
+        creditsCost: 0,
+      },
+    });
+
+    revalidatePath(`/workflow/editor/${id}`);
+  } catch (error) {
+    if (error instanceof Error) {
+      console.log("Failed to unpublish workflow:", error.message);
       throw error;
     } else {
       console.log(error);
