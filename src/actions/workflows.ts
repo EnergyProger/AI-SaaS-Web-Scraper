@@ -23,6 +23,7 @@ import { auth } from "@clerk/nextjs/server";
 import { Edge } from "@xyflow/react";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import parser from "cron-parser";
 
 export const getWorkflowsForUser = async () => {
   try {
@@ -115,8 +116,6 @@ export const deleteWorkflow = async (id: string) => {
         userId,
       },
     });
-
-    revalidatePath("/workflows");
   } catch (error) {
     if (error instanceof Error) {
       console.log("Failed to delete a workflow", error.message);
@@ -126,6 +125,8 @@ export const deleteWorkflow = async (id: string) => {
       throw new Error("Something went wrong");
     }
   }
+
+  revalidatePath("/workflows");
 };
 
 export const getWorkflowById = async (workflowId: string) => {
@@ -191,8 +192,6 @@ export const updateWorkflow = async (id: string, definition: string) => {
         definition,
       },
     });
-
-    revalidatePath("/workflows");
   } catch (error) {
     if (error instanceof Error) {
       console.log("Failed to update workflow:", error.message);
@@ -202,6 +201,8 @@ export const updateWorkflow = async (id: string, definition: string) => {
       throw new Error("Something went wrong");
     }
   }
+
+  revalidatePath("/workflows");
 };
 
 export const runWorkflow = async (form: {
@@ -467,8 +468,6 @@ export const publishWorkflow = async ({
         status: WorkflowStatus.PUBLISHED,
       },
     });
-
-    revalidatePath(`/workflow/editor/${id}`);
   } catch (error) {
     if (error instanceof Error) {
       console.log("Failed to publish workflow:", error.message);
@@ -478,6 +477,8 @@ export const publishWorkflow = async ({
       throw new Error("Something went wrong");
     }
   }
+
+  revalidatePath(`/workflow/editor/${id}`);
 };
 
 export const unpublishWorkflow = async (id: string) => {
@@ -514,8 +515,6 @@ export const unpublishWorkflow = async (id: string) => {
         creditsCost: 0,
       },
     });
-
-    revalidatePath(`/workflow/editor/${id}`);
   } catch (error) {
     if (error instanceof Error) {
       console.log("Failed to unpublish workflow:", error.message);
@@ -525,4 +524,76 @@ export const unpublishWorkflow = async (id: string) => {
       throw new Error("Something went wrong");
     }
   }
+
+  revalidatePath(`/workflow/editor/${id}`);
+};
+
+export const updateWorkflowCron = async ({
+  id,
+  cron,
+}: {
+  id: string;
+  cron: string;
+}) => {
+  try {
+    const { userId } = auth();
+
+    if (!userId) {
+      throw new Error("Unauthenticated");
+    }
+
+    const interval = parser.parseExpression(cron, { utc: true });
+
+    await prisma.workflow.update({
+      where: {
+        id,
+        userId,
+      },
+      data: {
+        cron,
+        nextRunAt: interval.next().toDate(),
+      },
+    });
+  } catch (error) {
+    if (error instanceof Error) {
+      console.log("Failed to update workflow cron:", error.message);
+      throw error;
+    } else {
+      console.log(error);
+      throw new Error("Something went wrong");
+    }
+  }
+
+  revalidatePath("/workflows");
+};
+
+export const removeWorkflowSchedule = async (id: string) => {
+  try {
+    const { userId } = auth();
+
+    if (!userId) {
+      throw new Error("Unauthenticated");
+    }
+
+    await prisma.workflow.update({
+      where: {
+        id,
+        userId,
+      },
+      data: {
+        cron: null,
+        nextRunAt: null,
+      },
+    });
+  } catch (error) {
+    if (error instanceof Error) {
+      console.log("Failed to delete workflow schedule:", error.message);
+      throw error;
+    } else {
+      console.log(error);
+      throw new Error("Something went wrong");
+    }
+  }
+
+  revalidatePath("/workflows");
 };

@@ -14,6 +14,8 @@ import Link from "next/link";
 import React from "react";
 import WorkflowActions from "./workflow-actions";
 import RunButton from "./run-button";
+import ScheduleSection from "./schedule-section";
+import LastRunDetails from "./last-run-details";
 
 type Props = {
   workflow: Workflow;
@@ -58,6 +60,12 @@ const WorkflowCard = ({ workflow }: Props) => {
                 </span>
               )}
             </h3>
+            <ScheduleSection
+              isDraft={isDraft}
+              creditsCost={workflow.creditsCost}
+              workflowId={workflow.id}
+              cron={workflow.cron}
+            />
           </div>
         </div>
         <div className="flex items-center space-x-2">
@@ -81,6 +89,7 @@ const WorkflowCard = ({ workflow }: Props) => {
           />
         </div>
       </CardContent>
+      <LastRunDetails workflow={workflow} />
     </Card>
   );
 };
