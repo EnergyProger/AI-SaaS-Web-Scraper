@@ -9,6 +9,8 @@ import { TaskRegistry } from "@/lib/workflow/task/registry";
 import {
   createWorkflowSchema,
   createWorkflowSchemaType,
+  duplicateWorkflowSchema,
+  duplicateWorkflowSchemaType,
 } from "@/schema/workflow";
 import { AppNode } from "@/types/app-node";
 import { TaskType } from "@/types/task";
@@ -588,6 +590,53 @@ export const removeWorkflowSchedule = async (id: string) => {
   } catch (error) {
     if (error instanceof Error) {
       console.log("Failed to delete workflow schedule:", error.message);
+      throw error;
+    } else {
+      console.log(error);
+      throw new Error("Something went wrong");
+    }
+  }
+
+  revalidatePath("/workflows");
+};
+
+export const duplicateWorkflow = async (form: duplicateWorkflowSchemaType) => {
+  try {
+    const { userId } = auth();
+
+    if (!userId) {
+      throw new Error("Unauthenticated");
+    }
+
+    const { success, data } = duplicateWorkflowSchema.safeParse(form);
+
+    if (!success) {
+      throw new Error("Invalid form data");
+    }
+
+    const sourceWorkflow = await prisma.workflow.findUnique({
+      where: {
+        id: data.workflowId,
+        userId,
+      },
+    });
+
+    if (!sourceWorkflow) {
+      throw new Error("Workflow not found");
+    }
+
+    await prisma.workflow.create({
+      data: {
+        userId,
+        name: data.name,
+        description: data.description,
+        definition: sourceWorkflow.definition,
+        status: WorkflowStatus.DRAFT,
+      },
+    });
+  } catch (error) {
+    if (error instanceof Error) {
+      console.log("Failed to duplicate workflow:", error.message);
       throw error;
     } else {
       console.log(error);

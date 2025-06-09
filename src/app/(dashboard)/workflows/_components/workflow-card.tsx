@@ -16,6 +16,8 @@ import WorkflowActions from "./workflow-actions";
 import RunButton from "./run-button";
 import ScheduleSection from "./schedule-section";
 import LastRunDetails from "./last-run-details";
+import DuplicateWorkflowDialog from "./duplicate-workflow-dialog";
+import TooltipWrapper from "@/components/tooltip-wrapper";
 
 type Props = {
   workflow: Workflow;
@@ -27,7 +29,7 @@ const WorkflowCard = ({ workflow }: Props) => {
   return (
     <Card
       className="border border-separate shadow-sm rounded-lg overflow-hidden
-    hover:shadow-md dark:shadow-primary/30"
+    hover:shadow-md dark:shadow-primary/30 group/card"
     >
       <CardContent className="p-4 flex justify-between items-center h-[100px]">
         <div className="flex justify-end items-center space-x-3">
@@ -45,12 +47,14 @@ const WorkflowCard = ({ workflow }: Props) => {
           </div>
           <div>
             <h3 className="text-base font-bold text-muted-foreground flex items-center">
-              <Link
-                href={`/workflow/editor/${workflow.id}`}
-                className="flex items-center hover:underline"
-              >
-                {workflow.name}
-              </Link>
+              <TooltipWrapper content={workflow.description}>
+                <Link
+                  href={`/workflow/editor/${workflow.id}`}
+                  className="flex items-center hover:underline"
+                >
+                  {workflow.name}
+                </Link>
+              </TooltipWrapper>
               {isDraft && (
                 <span
                   className="ml-2 px-2 py-0.5 text-xs font-medium bg-yellow-100 text-yellow-800
@@ -59,6 +63,7 @@ const WorkflowCard = ({ workflow }: Props) => {
                   Draft
                 </span>
               )}
+              <DuplicateWorkflowDialog workflowId={workflow.id} />
             </h3>
             <ScheduleSection
               isDraft={isDraft}

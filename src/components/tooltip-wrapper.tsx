@@ -16,6 +16,8 @@ type Props = {
 };
 
 const TooltipWrapper = ({ content, children, side }: Props) => {
+  if (!content) return children;
+
   return (
     <TooltipProvider delayDuration={TOOLTIP_PROVIDER_DELAY_DURATION}>
       <Tooltip>
