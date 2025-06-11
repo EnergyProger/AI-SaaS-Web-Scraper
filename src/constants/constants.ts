@@ -54,10 +54,15 @@ export const TOPBAR_ICON_SIZE = 16;
 export const COLOR_FOR_NODE_HANDLE: Record<TaskParamType, string> = {
   BROWSER_INSTANCE: "!bg-sky-400",
   STRING: "!bg-amber-400",
+  SELECT: "!bg-rose-400",
 };
 export const COPY_NODE_POSITION_X = 20;
 export const LAUNCH_BROWSER_TASK_CREDIT = 5;
-export const DEFAULT_TASK_CREDIT = 2;
+export const PAGE_TO_HTML_TASK_CREDIT = 2;
+export const EXTRACT_TEXT_FROM_ELEMENT_TASK_CREDIT = 2;
+export const FILL_INPUT_TASK_CREDIT = 1;
+export const CLICK_ELEMENT_TASK_CREDIT = 1;
+export const WAIT_FOR_ELEMENT_TASK_CREDIT = 1;
 
 export const LOG_TIMESTAMP_TABLE_CELL_WIDTH = 190;
 export const LOG_LEVEL_TABLE_CELL_WIDTH = 80;
@@ -73,3 +78,6 @@ export const EXECUTION_RUNS_REFETCH_INTERVAL = 5000;
 export const COLOR_TOP_LOADER = "#10b981";
 
 export const WORKFLOW_CARD_LAST_RUN_ICON_SIZE = 14;
+
+export const WAIT_FOR_SELECTED_ELEMENT_VISIBLE = "visible";
+export const WAIT_FOR_SELECTED_ELEMENT_HIDDEN = "hidden";

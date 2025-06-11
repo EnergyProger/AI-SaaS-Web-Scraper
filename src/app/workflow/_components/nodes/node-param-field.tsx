@@ -6,6 +6,7 @@ import StringParam from "./params/string-param";
 import { useReactFlow } from "@xyflow/react";
 import { AppNode } from "@/types/app-node";
 import BrowserInstanceParam from "./params/browser-instance-param";
+import SelectParam from "./params/select-param";
 
 type Props = {
   param: TaskParam;
@@ -42,6 +43,15 @@ const NodeParamField = ({ param, nodeId, disabled }: Props) => {
       );
     case TaskParamType.BROWSER_INSTANCE:
       return <BrowserInstanceParam param={param} />;
+    case TaskParamType.SELECT:
+      return (
+        <SelectParam
+          param={param}
+          value={value}
+          updateNodeParamValue={updateNodeParamValue}
+          disabled={disabled}
+        />
+      );
     default:
       return (
         <div className="w-full">
