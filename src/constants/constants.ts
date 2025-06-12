@@ -82,3 +82,5 @@ export const WORKFLOW_CARD_LAST_RUN_ICON_SIZE = 14;
 
 export const WAIT_FOR_SELECTED_ELEMENT_VISIBLE = "visible";
 export const WAIT_FOR_SELECTED_ELEMENT_HIDDEN = "hidden";
+
+export const CREDENTIALS_SIZE_ICON = 40;

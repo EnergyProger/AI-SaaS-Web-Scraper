@@ -7,6 +7,7 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
+  BreadcrumbSeparator,
 } from "./ui/breadcrumb";
 import MobileSidebar from "./mobile/mobile-sidebar";
 
@@ -20,11 +21,14 @@ const BreadcrumbHeader = () => {
       <Breadcrumb>
         <BreadcrumbList>
           {paths.map((path, index) => (
-            <BreadcrumbItem key={index}>
-              <BreadcrumbLink className="capitalize" href={`/${path}`}>
-                {path === "" ? "home" : path}
-              </BreadcrumbLink>
-            </BreadcrumbItem>
+            <React.Fragment key={index}>
+              <BreadcrumbItem>
+                <BreadcrumbLink className="capitalize" href={`/${path}`}>
+                  {path === "" ? "home" : path}
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              {index !== paths.length - 1 && <BreadcrumbSeparator />}
+            </React.Fragment>
           ))}
         </BreadcrumbList>
       </Breadcrumb>
