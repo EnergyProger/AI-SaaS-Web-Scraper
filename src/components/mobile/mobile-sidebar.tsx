@@ -1,4 +1,4 @@
-import { DEFAULT_ICON_SIZE, SIDEBAR_ROUTES } from "@/constants/constants";
+import { DEFAULT_ICON_SIZE, SIDEBAR_ROUTES } from "@/constants/common";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";

@@ -1,4 +1,4 @@
-import { WAIT_FOR_ELEMENT_TASK_CREDIT } from "@/constants/constants";
+import { TASK_WAIT_FOR_ELEMENT_CREDIT } from "@/constants/tasks";
 import { TaskParamType, TaskType } from "@/types/task";
 import { WorkflowTask } from "@/types/workflow";
 import { Eye, LucideProps } from "lucide-react";
@@ -8,7 +8,7 @@ export const WaitForElementTask = {
   label: "Wait for element",
   icon: (props: LucideProps) => <Eye className="stroke-amber-400" {...props} />,
   isEntryPoint: false,
-  credits: WAIT_FOR_ELEMENT_TASK_CREDIT,
+  credits: TASK_WAIT_FOR_ELEMENT_CREDIT,
   inputs: [
     {
       name: "Web page",

@@ -1,6 +1,6 @@
 "use client";
 
-import { TOOLTIP_PROVIDER_DELAY_DURATION } from "@/constants/constants";
+import { TOOLTIP_PROVIDER_DELAY_DURATION } from "@/constants/common";
 import { TOOLTIP_SIDE } from "@/types/common";
 import {
   Tooltip,

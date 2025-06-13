@@ -1,7 +1,7 @@
 import Logo from "@/components/logo";
 import ThemeModeToggle from "@/components/theme-mode-toggle";
 import { Separator } from "@/components/ui/separator";
-import { LOGO_FONT_SIZE, LOGO_ICON_SIZE } from "@/constants/constants";
+import { LOGO_FONT_SIZE, LOGO_ICON_SIZE } from "@/constants/common";
 import React from "react";
 
 type Props = {

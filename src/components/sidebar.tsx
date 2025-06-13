@@ -3,7 +3,7 @@
 import React from "react";
 import Logo from "./logo";
 import Link from "next/link";
-import { DEFAULT_ICON_SIZE, SIDEBAR_ROUTES } from "@/constants/constants";
+import { DEFAULT_ICON_SIZE, SIDEBAR_ROUTES } from "@/constants/common";
 import { buttonVariants } from "./ui/button";
 import { usePathname } from "next/navigation";
 import { getActiveRoute } from "@/lib/helper/get-active-route";

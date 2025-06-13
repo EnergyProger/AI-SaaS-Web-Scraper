@@ -1,6 +1,6 @@
 import ExecutionStatusIndicator from "@/app/workflow/runs/[workflowId]/_components/execution-status-indicator";
 import ExecutionStatusLabel from "@/app/workflow/runs/[workflowId]/_components/execution-status-label";
-import { WORKFLOW_CARD_LAST_RUN_ICON_SIZE } from "@/constants/constants";
+import { WORKFLOW_CARD_LAST_RUN_ICON_SIZE } from "@/constants/workflows";
 import { WorkflowExecutionStatus, WorkflowStatus } from "@/types/workflow";
 import { Workflow } from "@prisma/client";
 import { format, formatDistanceToNow } from "date-fns";

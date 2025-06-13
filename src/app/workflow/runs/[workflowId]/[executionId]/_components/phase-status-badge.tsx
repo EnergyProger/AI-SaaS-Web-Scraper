@@ -1,4 +1,4 @@
-import { DEFAULT_ICON_SIZE } from "@/constants/constants";
+import { DEFAULT_ICON_SIZE } from "@/constants/common";
 import { ExecutionPhaseStatus } from "@/types/workflow";
 import { CircleCheck, CircleDashed, CircleX, Loader2 } from "lucide-react";
 import React from "react";

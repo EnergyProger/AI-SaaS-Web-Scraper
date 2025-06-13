@@ -22,7 +22,7 @@ export const getAvailableCredits = async () => {
     return balance.credits;
   } catch (error) {
     if (error instanceof Error) {
-      console.log("Failed to get available credits", error.message);
+      console.log("Failed to get available credits:", error.message);
       throw error;
     } else {
       console.log(error);

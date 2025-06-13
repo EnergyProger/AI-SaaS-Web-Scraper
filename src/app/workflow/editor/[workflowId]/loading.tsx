@@ -1,4 +1,4 @@
-import { EDITOR_LOADING_ICON_SIZE } from "@/constants/constants";
+import { EDITOR_LOADING_ICON_SIZE } from "@/constants/editors";
 import { Loader2 } from "lucide-react";
 import React from "react";
 

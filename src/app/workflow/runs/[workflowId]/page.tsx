@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import Topbar from "../../_components/topbar/topbar";
 import ExecutionsTableWrapper from "./_components/executions-table-wrapper";
 import { Loader2 } from "lucide-react";
-import { DEFAULT_ICON_SIZE } from "@/constants/constants";
+import { DEFAULT_ICON_SIZE } from "@/constants/common";
 
 type Props = {
   params: {

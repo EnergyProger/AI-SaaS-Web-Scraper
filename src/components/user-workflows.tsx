@@ -1,9 +1,9 @@
 import { getWorkflowsForUser } from "@/actions/workflows";
 import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
 import { AlertCircle, Inbox } from "lucide-react";
-import { EMPTY_WORKFLOWS_ICON_SIZE } from "@/constants/constants";
 import CreateWorkflowDialog from "@/app/(dashboard)/workflows/_components/create-workflow-dialog";
 import WorkflowCard from "@/app/(dashboard)/workflows/_components/workflow-card";
+import { WORKFLOWS_EMPTY_ICON_SIZE } from "@/constants/workflows";
 
 const UserWorkflows = async () => {
   const workflows = await getWorkflowsForUser();
@@ -22,7 +22,7 @@ const UserWorkflows = async () => {
     return (
       <div className="flex flex-col gap-4 h-full justify-center items-center">
         <div className="rounded-full bg-accent w-20 h-20 flex justify-center items-center">
-          <Inbox size={EMPTY_WORKFLOWS_ICON_SIZE} className="stroke-primary" />
+          <Inbox size={WORKFLOWS_EMPTY_ICON_SIZE} className="stroke-primary" />
         </div>
         <div className="flex flex-col gap-1 text-center">
           <p className="font-bold">No workflows created yet</p>

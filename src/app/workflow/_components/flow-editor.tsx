@@ -3,7 +3,7 @@
 import {
   EDITOR_BACKGROUND_VARIANT_GAP,
   EDITOR_BACKGROUND_VARIANT_SIZE,
-} from "@/constants/constants";
+} from "@/constants/editors";
 import { Workflow } from "@prisma/client";
 import { useCallback, useEffect } from "react";
 import NodeComponent from "./nodes/node-component";

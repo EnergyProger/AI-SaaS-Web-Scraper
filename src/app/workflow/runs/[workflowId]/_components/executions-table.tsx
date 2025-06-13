@@ -16,12 +16,10 @@ import React from "react";
 import ExecutionStatusIndicator from "./execution-status-indicator";
 import { WorkflowExecutionStatus } from "@/types/workflow";
 import { Coins } from "lucide-react";
-import {
-  DEFAULT_ICON_SIZE,
-  EXECUTION_RUNS_REFETCH_INTERVAL,
-} from "@/constants/constants";
+import { DEFAULT_ICON_SIZE } from "@/constants/common";
 import { formatDistanceToNow } from "date-fns";
 import { useRouter } from "next/navigation";
+import { EXECUTOR_RUNS_REFETCH_INTERVAL } from "@/constants/executors";
 
 type InitialDataType = Awaited<ReturnType<typeof getWorkflowExecutions>>;
 
@@ -37,7 +35,7 @@ const ExecutionsTable = ({ workflowId, initialData }: Props) => {
     queryKey: ["executions", workflowId],
     initialData,
     queryFn: () => getWorkflowExecutions(workflowId),
-    refetchInterval: EXECUTION_RUNS_REFETCH_INTERVAL,
+    refetchInterval: EXECUTOR_RUNS_REFETCH_INTERVAL,
   });
 
   const navigateToCertainWorkflowRun = (id: string, workflowId: string) =>

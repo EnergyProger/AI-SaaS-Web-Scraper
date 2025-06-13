@@ -4,7 +4,7 @@ import { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import NextTopLoader from "nextjs-toploader";
-import { COLOR_TOP_LOADER } from "@/constants/constants";
+import { COLOR_TOP_LOADER } from "@/constants/colors";
 
 type Props = {
   children: React.ReactNode;

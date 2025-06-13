@@ -4,7 +4,7 @@ import { getAvailableCredits } from "@/actions/billing";
 import {
   DEFAULT_ICON_SIZE,
   USER_BALANCE_REFETCH_INTERVAL,
-} from "@/constants/constants";
+} from "@/constants/common";
 import { cn } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import { Coins, Loader2 } from "lucide-react";

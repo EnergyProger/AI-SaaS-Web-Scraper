@@ -4,10 +4,7 @@ import {
   getWorkflowExecutionWithPhases,
   getWorkflowPhaseDetails,
 } from "@/actions/workflows";
-import {
-  DEFAULT_ICON_SIZE,
-  EXECUTION_REFETCH_INTERVAL,
-} from "@/constants/constants";
+import { DEFAULT_ICON_SIZE } from "@/constants/common";
 import {
   ExecutionPhaseStatus,
   WorkflowExecutionStatus,
@@ -33,6 +30,7 @@ import ParameterViewer from "./parameter-viewer";
 import LogViewer from "./log-viewer";
 import PhaseStatusBadge from "./phase-status-badge";
 import ReactCountUpWrapper from "@/components/react-count-up-wrapper";
+import { EXECUTOR_REFETCH_INTERVAL } from "@/constants/executors";
 
 type ExecutionData = Awaited<ReturnType<typeof getWorkflowExecutionWithPhases>>;
 
@@ -47,7 +45,7 @@ const ExecutionViewer = ({ initialData }: Props) => {
     queryFn: () => getWorkflowExecutionWithPhases(initialData!.id),
     refetchInterval: (query) =>
       query.state.data?.status === WorkflowExecutionStatus.RUNNING
-        ? EXECUTION_REFETCH_INTERVAL
+        ? EXECUTOR_REFETCH_INTERVAL
         : false,
   });
 

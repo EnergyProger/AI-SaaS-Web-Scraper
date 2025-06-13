@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button";
 import {
   COPY_NODE_POSITION_X,
   DEFAULT_NODE_ICON_SIZE,
-  TASK_ICON_SIZE,
-} from "@/constants/constants";
+} from "@/constants/common";
+import { TASK_ICON_SIZE } from "@/constants/tasks";
 import { createFlowNode } from "@/lib/workflow/create-flow-node";
 import { TaskRegistry } from "@/lib/workflow/task/registry";
 import { AppNode } from "@/types/app-node";

@@ -1,4 +1,4 @@
-import { SIDEBAR_ROUTES } from "@/constants/constants";
+import { SIDEBAR_ROUTES } from "@/constants/common";
 
 export const getActiveRoute = (
   pathname: string,

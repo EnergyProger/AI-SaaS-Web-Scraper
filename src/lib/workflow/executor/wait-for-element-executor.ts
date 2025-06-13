@@ -3,7 +3,7 @@ import { WaitForElementTask } from "../task/wait-for-element";
 import {
   WAIT_FOR_SELECTED_ELEMENT_HIDDEN,
   WAIT_FOR_SELECTED_ELEMENT_VISIBLE,
-} from "@/constants/constants";
+} from "@/constants/common";
 
 export const waitForElementExecutor = async (
   environment: ExecutionEnvironment<typeof WaitForElementTask>

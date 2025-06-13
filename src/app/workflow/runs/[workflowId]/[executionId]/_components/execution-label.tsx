@@ -1,4 +1,4 @@
-import { DEFAULT_ICON_SIZE } from "@/constants/constants";
+import { DEFAULT_ICON_SIZE } from "@/constants/common";
 import { LucideIcon } from "lucide-react";
 import React from "react";
 

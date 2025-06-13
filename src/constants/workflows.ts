@@ -1,0 +1,5 @@
+export const WORKFLOW_SKELETON = [1, 2, 3, 4];
+export const WORKFLOWS_EMPTY_ICON_SIZE = 40;
+export const WORKFLOW_CARD_EDIT_ICON_SIZE = 16;
+export const WORKFLOW_CARD_ACTIONS_ICON_SIZE = 18;
+export const WORKFLOW_CARD_LAST_RUN_ICON_SIZE = 14;

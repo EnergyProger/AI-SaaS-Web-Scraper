@@ -5,8 +5,8 @@ import { TaskParam } from "@/types/task";
 import { Handle, Position, useEdges } from "@xyflow/react";
 import React from "react";
 import NodeParamField from "./node-param-field";
-import { COLOR_FOR_NODE_HANDLE } from "@/constants/constants";
 import { useFlowValidation } from "@/hooks/use-flow-validation";
+import { COLORS_FOR_NODE_HANDLE } from "@/constants/colors";
 
 type Props = {
   input: TaskParam;
@@ -39,7 +39,7 @@ const NodeInput = ({ input, nodeId }: Props) => {
           position={Position.Left}
           className={cn(
             "!bg-muted-foreground !border-2 !border-background !-left-2 !w-4 !h-4",
-            COLOR_FOR_NODE_HANDLE[input.type]
+            COLORS_FOR_NODE_HANDLE[input.type]
           )}
         />
       )}

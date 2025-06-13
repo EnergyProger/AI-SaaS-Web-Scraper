@@ -1,4 +1,4 @@
-import { LAUNCH_BROWSER_TASK_CREDIT } from "@/constants/constants";
+import { TASK_LAUNCH_BROWSER_CREDIT } from "@/constants/tasks";
 import { TaskParamType, TaskType } from "@/types/task";
 import { WorkflowTask } from "@/types/workflow";
 import { Globe, LucideProps } from "lucide-react";
@@ -10,7 +10,7 @@ export const LaunchBrowserTask = {
     <Globe className="stroke-pink-400" {...props} />
   ),
   isEntryPoint: true,
-  credits: LAUNCH_BROWSER_TASK_CREDIT,
+  credits: TASK_LAUNCH_BROWSER_CREDIT,
   inputs: [
     {
       name: "Website URL",

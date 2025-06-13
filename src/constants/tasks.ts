@@ -1,0 +1,8 @@
+export const TASK_ICON_SIZE = 16;
+export const TASK_LAUNCH_BROWSER_CREDIT = 5;
+export const TASK_PAGE_TO_HTML_CREDIT = 2;
+export const TASK_EXTRACT_TEXT_FROM_ELEMENT_CREDIT = 2;
+export const TASK_FILL_INPUT_CREDIT = 1;
+export const TASK_CLICK_ELEMENT_CREDIT = 1;
+export const TASK_WAIT_FOR_ELEMENT_CREDIT = 1;
+export const TASK_DELIVER_VIA_WEBHOOK_CREDIT = 1;

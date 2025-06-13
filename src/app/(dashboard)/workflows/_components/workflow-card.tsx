@@ -2,10 +2,7 @@
 
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  WORKFLOW_CARD_EDIT_ICON_SIZE,
-  WORKFLOW_STATUS_COLORS,
-} from "@/constants/constants";
+import { WORKFLOW_CARD_EDIT_ICON_SIZE } from "@/constants/workflows";
 import { cn } from "@/lib/utils";
 import { WorkflowStatus } from "@/types/workflow";
 import { Workflow } from "@prisma/client";
@@ -18,6 +15,7 @@ import ScheduleSection from "./schedule-section";
 import LastRunDetails from "./last-run-details";
 import DuplicateWorkflowDialog from "./duplicate-workflow-dialog";
 import TooltipWrapper from "@/components/tooltip-wrapper";
+import { COLORS_WORKFLOW_STATUS } from "@/constants/colors";
 
 type Props = {
   workflow: Workflow;
@@ -36,7 +34,7 @@ const WorkflowCard = ({ workflow }: Props) => {
           <div
             className={cn(
               "w-10 h-10 rounded-full flex justify-center items-center",
-              WORKFLOW_STATUS_COLORS[workflow.status as WorkflowStatus]
+              COLORS_WORKFLOW_STATUS[workflow.status as WorkflowStatus]
             )}
           >
             {isDraft ? (

@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { DEFAULT_ICON_SIZE } from "@/constants/constants";
+import { DEFAULT_ICON_SIZE } from "@/constants/common";
 import { TaskRegistry } from "@/lib/workflow/task/registry";
 import { TaskType } from "@/types/task";
 import React from "react";

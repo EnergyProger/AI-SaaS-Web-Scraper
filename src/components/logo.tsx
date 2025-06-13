@@ -1,4 +1,4 @@
-import { LOGO_FONT_SIZE, LOGO_ICON_SIZE } from "@/constants/constants";
+import { LOGO_FONT_SIZE, LOGO_ICON_SIZE } from "@/constants/common";
 import { cn } from "@/lib/utils";
 import { SquareDashedMousePointer } from "lucide-react";
 import Link from "next/link";

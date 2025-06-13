@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { DEFAULT_ICON_SIZE } from "@/constants/constants";
+import { DEFAULT_ICON_SIZE } from "@/constants/common";
 import { errorHandler } from "@/lib/helper/error-handler";
 import { useMutation } from "@tanstack/react-query";
 import { X } from "lucide-react";

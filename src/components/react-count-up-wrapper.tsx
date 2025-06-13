@@ -3,7 +3,7 @@
 import {
   CREDITS_COUNT_UP_DECIMALS,
   CREDITS_COUNT_UP_DURATION,
-} from "@/constants/constants";
+} from "@/constants/common";
 import React, { useEffect, useState } from "react";
 import CountUp from "react-countup";
 

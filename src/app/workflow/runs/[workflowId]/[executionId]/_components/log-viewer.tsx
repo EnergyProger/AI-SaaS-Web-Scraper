@@ -16,7 +16,7 @@ import {
 import {
   LOG_LEVEL_TABLE_CELL_WIDTH,
   LOG_TIMESTAMP_TABLE_CELL_WIDTH,
-} from "@/constants/constants";
+} from "@/constants/logs";
 import { cn } from "@/lib/utils";
 import { LogLevel } from "@/types/log";
 import { ExecutionLog } from "@prisma/client";

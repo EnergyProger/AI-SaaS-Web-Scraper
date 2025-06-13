@@ -1,14 +1,12 @@
 import { getCredentialsForUser } from "@/actions/credentials";
 import { Card } from "@/components/ui/card";
-import {
-  CREDENTIALS_SIZE_ICON,
-  DEFAULT_ICON_SIZE,
-} from "@/constants/constants";
+import { DEFAULT_ICON_SIZE } from "@/constants/common";
 import { LockKeyhole, ShieldOff } from "lucide-react";
 import React from "react";
 import CreateCredentialDialog from "./create-credential-dialog";
 import { formatDistanceToNow } from "date-fns";
 import DeleteCredentialDialog from "./delete-credential-dialog";
+import { CREDENTIAL_SIZE_ICON } from "@/constants/credentials";
 
 const UserCredentials = async () => {
   const credentials = await getCredentialsForUser();
@@ -22,10 +20,7 @@ const UserCredentials = async () => {
       <Card className="w-full p-4">
         <div className="flex flex-col gap-4 justify-center items-center">
           <div className="rounded-full bg-accent h-20 w-20 flex justify-center items-center">
-            <ShieldOff
-              size={CREDENTIALS_SIZE_ICON}
-              className="stroke-primary"
-            />
+            <ShieldOff size={CREDENTIAL_SIZE_ICON} className="stroke-primary" />
           </div>
           <div className="flex flex-col gap-1 text-center">
             <p className="text-bold">No credentials created yet</p>

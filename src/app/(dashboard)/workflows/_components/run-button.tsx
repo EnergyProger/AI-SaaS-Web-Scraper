@@ -2,7 +2,7 @@
 
 import { runWorkflow } from "@/actions/workflows";
 import { Button } from "@/components/ui/button";
-import { DEFAULT_ICON_SIZE } from "@/constants/constants";
+import { DEFAULT_ICON_SIZE } from "@/constants/common";
 import { errorHandler } from "@/lib/helper/error-handler";
 import { useMutation } from "@tanstack/react-query";
 import { Play } from "lucide-react";

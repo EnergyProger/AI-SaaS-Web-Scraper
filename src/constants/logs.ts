@@ -1,0 +1,2 @@
+export const LOG_TIMESTAMP_TABLE_CELL_WIDTH = 190;
+export const LOG_LEVEL_TABLE_CELL_WIDTH = 80;

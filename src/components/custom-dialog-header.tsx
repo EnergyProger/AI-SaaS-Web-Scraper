@@ -3,7 +3,7 @@
 import { DialogHeader, DialogTitle } from "./ui/dialog";
 import { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { DIALOG_HEADER_ICON_SIZE } from "@/constants/constants";
+import { DIALOG_HEADER_ICON_SIZE } from "@/constants/common";
 import { Separator } from "./ui/separator";
 
 type Props = {

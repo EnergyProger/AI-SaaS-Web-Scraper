@@ -1,4 +1,4 @@
-import { FILL_INPUT_TASK_CREDIT } from "@/constants/constants";
+import { TASK_FILL_INPUT_CREDIT } from "@/constants/tasks";
 import { TaskParamType, TaskType } from "@/types/task";
 import { WorkflowTask } from "@/types/workflow";
 import { Edit3, LucideProps } from "lucide-react";
@@ -10,7 +10,7 @@ export const FillInputTask = {
     <Edit3 className="stroke-orange-400" {...props} />
   ),
   isEntryPoint: false,
-  credits: FILL_INPUT_TASK_CREDIT,
+  credits: TASK_FILL_INPUT_CREDIT,
   inputs: [
     {
       name: "Web page",

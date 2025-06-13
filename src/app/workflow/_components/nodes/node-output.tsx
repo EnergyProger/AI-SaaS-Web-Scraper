@@ -1,6 +1,6 @@
 "use client";
 
-import { COLOR_FOR_NODE_HANDLE } from "@/constants/constants";
+import { COLORS_FOR_NODE_HANDLE } from "@/constants/colors";
 import { cn } from "@/lib/utils";
 import { TaskParam } from "@/types/task";
 import { Handle, Position } from "@xyflow/react";
@@ -20,7 +20,7 @@ const NodeOutput = ({ output }: Props) => {
         position={Position.Right}
         className={cn(
           "!bg-muted-foreground !border-2 !border-background !-right-2 !w-4 !h-4",
-          COLOR_FOR_NODE_HANDLE[output.type]
+          COLORS_FOR_NODE_HANDLE[output.type]
         )}
       />
     </div>

@@ -1,4 +1,4 @@
-import { EXTRACT_TEXT_FROM_ELEMENT_TASK_CREDIT } from "@/constants/constants";
+import { TASK_EXTRACT_TEXT_FROM_ELEMENT_CREDIT } from "@/constants/tasks";
 import { TaskParamType, TaskType } from "@/types/task";
 import { WorkflowTask } from "@/types/workflow";
 import { LucideProps, Text } from "lucide-react";
@@ -8,7 +8,7 @@ export const ExtractTextFromElementTask = {
   label: "Extract text from element",
   icon: (props: LucideProps) => <Text className="stroke-rose-400" {...props} />,
   isEntryPoint: false,
-  credits: EXTRACT_TEXT_FROM_ELEMENT_TASK_CREDIT,
+  credits: TASK_EXTRACT_TEXT_FROM_ELEMENT_CREDIT,
   inputs: [
     {
       name: "HTML",

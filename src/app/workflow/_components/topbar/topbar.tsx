@@ -2,7 +2,7 @@
 
 import TooltipWrapper from "@/components/tooltip-wrapper";
 import { Button } from "@/components/ui/button";
-import { DEFAULT_ICON_SIZE } from "@/constants/constants";
+import { DEFAULT_ICON_SIZE } from "@/constants/common";
 import { ChevronLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React from "react";

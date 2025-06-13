@@ -8,7 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { WORKFLOW_CARD_ACTIONS_ICON_SIZE } from "@/constants/constants";
+import { WORKFLOW_CARD_ACTIONS_ICON_SIZE } from "@/constants/workflows";
 import { MoreVertical, Trash } from "lucide-react";
 import React, { useState } from "react";
 import DeleteWorkflowDialog from "./delete-workflow-dialog";
