@@ -23,15 +23,22 @@ import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-const CreateCredentialDialogForm = () => {
+type Props = {
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const CreateCredentialDialogForm = ({ setIsOpen }: Props) => {
   const form = useForm<createCredentialSchemaType>({
     resolver: zodResolver(createCredentialSchema),
   });
 
   const { mutate, isPending } = useMutation({
     mutationFn: createCredential,
-    onSuccess: () =>
-      toast.success("Credential created", { id: "create-credential" }),
+    onSuccess: () => {
+      toast.success("Credential created", { id: "create-credential" });
+      form.reset();
+      setIsOpen(false);
+    },
     onError: (error: unknown) => {
       const message = errorHandler(error);
       toast.error(message, { id: "create-credential" });

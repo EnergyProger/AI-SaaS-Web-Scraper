@@ -22,7 +22,7 @@ const CreateCredentialDialog = ({ triggerText }: Props) => {
       <DialogContent className="px-0">
         <CustomDialogHeader icon={ShieldEllipsis} title="Create a credential" />
         <div className="p-6">
-          <CreateCredentialDialogForm />
+          <CreateCredentialDialogForm setIsOpen={setIsOpen} />
         </div>
       </DialogContent>
     </Dialog>

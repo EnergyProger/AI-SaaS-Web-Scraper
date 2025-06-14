@@ -1,5 +1,6 @@
 "use client";
 
+import { getCredentialsForUser } from "@/actions/credentials";
 import { Label } from "@/components/ui/label";
 import {
   Select,
@@ -11,12 +12,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { TaskParam } from "@/types/task";
+import { useQuery } from "@tanstack/react-query";
 import React, { useId } from "react";
-
-type OptionType = {
-  label: string;
-  value: string;
-};
 
 type Props = {
   param: TaskParam;
@@ -24,8 +21,14 @@ type Props = {
   updateNodeParamValue: (value: string) => void;
 };
 
-const SelectParam = ({ param, value, updateNodeParamValue }: Props) => {
+const CredentialsParam = ({ param, value, updateNodeParamValue }: Props) => {
   const id = useId();
+
+  const query = useQuery({
+    queryKey: ["credentials-for-user"],
+    queryFn: () => getCredentialsForUser(),
+    refetchInterval: 10000,
+  });
 
   const onValueChange = (newValue: string) => updateNodeParamValue(newValue);
 
@@ -41,10 +44,10 @@ const SelectParam = ({ param, value, updateNodeParamValue }: Props) => {
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            <SelectLabel>Options</SelectLabel>
-            {param.options.map((option: OptionType) => (
-              <SelectItem key={option.value} value={option.value}>
-                {option.label}
+            <SelectLabel>Credentials</SelectLabel>
+            {query.data?.map((credential) => (
+              <SelectItem key={credential.id} value={credential.id}>
+                {credential.name}
               </SelectItem>
             ))}
           </SelectGroup>
@@ -54,4 +57,4 @@ const SelectParam = ({ param, value, updateNodeParamValue }: Props) => {
   );
 };
 
-export default SelectParam;
+export default CredentialsParam;
