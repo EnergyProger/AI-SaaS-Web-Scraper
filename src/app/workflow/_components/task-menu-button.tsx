@@ -1,7 +1,9 @@
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { DEFAULT_ICON_SIZE } from "@/constants/common";
 import { TaskRegistry } from "@/lib/workflow/task/registry";
 import { TaskType } from "@/types/task";
+import { Coins } from "lucide-react";
 import React from "react";
 
 type Props = {
@@ -27,6 +29,10 @@ const TaskMenuButton = ({ taskType }: Props) => {
         <task.icon size={DEFAULT_ICON_SIZE} />
         {task.label}
       </div>
+      <Badge className="flex items-center gap-2" variant="outline">
+        <Coins size={DEFAULT_ICON_SIZE} />
+        {task.credits}
+      </Badge>
     </Button>
   );
 };
