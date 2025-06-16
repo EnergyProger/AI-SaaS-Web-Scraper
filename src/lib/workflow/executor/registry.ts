@@ -12,6 +12,7 @@ import { extractDataWithAIExecutor } from "./extract-data-with-ai-executor";
 import { readPropertyFromJSONExecutor } from "./read-property-from-json-executor";
 import { addPropertyToJSONExecutor } from "./add-property-to-json-executor";
 import { navigateUrlExecutor } from "./navigate-url-executor";
+import { scrollToElementExecutor } from "./scroll-to-element-executor";
 
 type ExecutorFn<T extends WorkflowTask> = (
   environment: ExecutionEnvironment<T>
@@ -33,4 +34,5 @@ export const ExecutorRegistry: RegistryType = {
   READ_PROPERTY_FROM_JSON: readPropertyFromJSONExecutor,
   ADD_PROPERTY_TO_JSON: addPropertyToJSONExecutor,
   NAVIGATE_URL: navigateUrlExecutor,
+  SCROLL_TO_ELEMENT: scrollToElementExecutor,
 };
