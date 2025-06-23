@@ -47,3 +47,18 @@ export const USER_BALANCE_REFETCH_INTERVAL = 30 * 1000;
 
 export const WAIT_FOR_SELECTED_ELEMENT_VISIBLE = "visible";
 export const WAIT_FOR_SELECTED_ELEMENT_HIDDEN = "hidden";
+
+export const MONTH_NAMES = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
