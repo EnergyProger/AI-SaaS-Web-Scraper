@@ -1,0 +1,3 @@
+export const SETTING_LOGO_ICON_SIZE = 50;
+export const SETTING_LOADER_ICON_SIZE = 16;
+export const SETTING_FREE_USER_CREDITS = 100;
