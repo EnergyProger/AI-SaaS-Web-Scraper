@@ -1,0 +1,1 @@
+export const BILLING_BALANCE_CARD_ICON_SIZE = 140;
