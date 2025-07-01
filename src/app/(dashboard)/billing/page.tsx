@@ -3,6 +3,7 @@ import BalanceCard from "./_components/balance-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import CreditsPurchase from "./_components/credits-purchase";
 import CreditUsageCard from "./_components/credit-usage-card";
+import TransactionHistoryCard from "./_components/transaction-history-card";
 
 const BillingPage = () => {
   return (
@@ -14,6 +15,9 @@ const BillingPage = () => {
       <CreditsPurchase />
       <Suspense fallback={<Skeleton className="h-[300px] w-full" />}>
         <CreditUsageCard />
+      </Suspense>
+      <Suspense fallback={<Skeleton className="h-[300px] w-full" />}>
+        <TransactionHistoryCard />
       </Suspense>
     </div>
   );

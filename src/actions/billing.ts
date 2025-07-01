@@ -121,3 +121,71 @@ export const purchaseCredits = async (packId: PackId) => {
     }
   }
 };
+
+export const getUserPurchaseHistory = async () => {
+  try {
+    const { userId } = auth();
+
+    if (!userId) {
+      throw new Error("Unauthenticated");
+    }
+
+    const purchases = await prisma.userPurchase.findMany({
+      where: {
+        userId,
+      },
+      orderBy: {
+        date: "desc",
+      },
+    });
+
+    return purchases;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.log("Failed to get user purchase history:", error.message);
+      throw error;
+    } else {
+      console.log(error);
+      throw new Error("Something went wrong");
+    }
+  }
+};
+
+export const downloadInvoice = async (id: string) => {
+  try {
+    const { userId } = auth();
+
+    if (!userId) {
+      throw new Error("Unauthenticated");
+    }
+
+    const purchase = await prisma.userPurchase.findUnique({
+      where: {
+        id,
+        userId,
+      },
+    });
+
+    if (!purchase) {
+      throw new Error("Bad request");
+    }
+
+    const session = await stripe.checkout.sessions.retrieve(purchase.stripeId);
+
+    if (!session.invoice) {
+      throw new Error("Invoice not found");
+    }
+
+    const invoice = await stripe.invoices.retrieve(session.invoice as string);
+
+    return invoice.hosted_invoice_url;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.log("Failed to download invoice:", error.message);
+      throw error;
+    } else {
+      console.log(error);
+      throw new Error("Something went wrong");
+    }
+  }
+};

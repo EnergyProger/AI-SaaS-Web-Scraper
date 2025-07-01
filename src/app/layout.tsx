@@ -10,9 +10,9 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "AIWebScrapeFlow",
-  description: `AIWebScrapeFlow is an intuitive platform that orchestrates AI-powered web crawling,
-  dynamic content extraction, and machine‑learning–driven data parsing to transform unstructured websites
-  into clean, structured datasets with minimal configuration`,
+  description: `AIWebScrapeFlow is a powerful, AI-driven web scraping platform that automates crawling, 
+  intelligently extracts dynamic content, and converts unstructured web data into 
+  clean, structured datasets - requiring minimal setup`,
 };
 
 export default function RootLayout({
